@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Transaction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .btn-custom {
+            background-color: #ff5722;
+            color: white;
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-custom:hover {
+            background-color: #e64a19;
+        }
+        .form-control {
+            margin-bottom: 15px;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 16px;
+        }
+        .animation {
+            margin-top: 10px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-15px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Add New Transaction</h1>
+    <div class="container-fluid">
+        <div class="row">
+
+        <form method="post" class="col-6">
+            <h3>Expenses</h3>
+            {% if form1.errors %}
+    {% for field in form1 %}
+        {% for error in field.errors %}
+            {{ error }}
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        {{ error }}
+    {% endfor %}
+{% endif %}
+
+            {% csrf_token %}
+            {{ form1.as_p }}
+            <button type="submit" class="btn-custom" name="submit_form1">Add Transaction</button>
+        </form>
+        
+        <form method="post" class="col-6">
+            <h3>Incomes</h3>
+            {% if form2.errors %}
+    {% for field in form2 %}
+        {% for error in field.errors %}
+            {{ error }}
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        {{ error }}
+    {% endfor %}
+{% endif %}
+
+            {% csrf_token %}
+            {{ form2.as_p }}
+            <button type="submit" name="submit_form2" class="btn-custom">Add Transaction</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

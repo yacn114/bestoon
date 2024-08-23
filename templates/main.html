@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px;
+        }
+        .summary {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .summary div {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Financial Dashboard</h1>
+        <div class="chart-container">
+            <canvas id="transactionChart"></canvas>
+        </div>
+        <div class="summary">
+            <div>
+                <h3>Total Income</h3>
+                <p>{{ income }}</p>
+            </div>
+            <div>
+                <h3>Total Expenses</h3>
+                <p>{{ expenses }}</p>
+            </div>
+            <div>
+                <h3>Balance</h3>
+                <p>{{ balance }}</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var ctx = document.getElementById('transactionChart').getContext('2d');
+        var transactionChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Income', 'Expenses'],
+                datasets: [{
+                    label: 'Amount',
+                    data: [{{ income }}, {{ expenses }}],
+                    backgroundColor: ['#4CAF50', '#F44336'],
+                    borderColor: ['#388E3C', '#D32F2F'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

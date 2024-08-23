@@ -25,3 +25,8 @@ class Income(models.Model):
     date = models.DateTimeField()
     def __str__(self):
         return f"{self.date.month}/{self.date.day} : {self.amount:,} "
+
+
+#TODO; add signal for all amount
+#TODO; add bot telegram {telebot}
+#TODO; add drf
