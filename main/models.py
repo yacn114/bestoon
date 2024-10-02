@@ -28,7 +28,7 @@ class Income(models.Model):
 
 class Topic(models.Model):
     name = models.CharField(max_length=255)
-    
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "topic"

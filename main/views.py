@@ -1,20 +1,18 @@
 from django.shortcuts import render,redirect
-from .models import Expensive,Income
+from .models import Expensive,Income,customTags,Topic
 from django.db.models import Sum
 from .forms import ExpensiveForm,IncomeForm
-def main(request):
-    income = Income.objects.all().aggregate(Sum('amount'))['amount__sum'] or 0
-    expenses = Expensive.objects.all().aggregate(Sum('amount'))['amount__sum'] or 0
-    transactions = expenses + income
-    balance = income - expenses
 
+
+def main(request):
+    topics = Topic.objects.filter(user=request.user)
     context = {
-        'transactions': transactions,
-        'income': income,
-        'expenses': expenses,
-        'balance': balance,
+        "items":topics,
+        
     }
     return render(request, 'main.html', context)
+
+
 
 def add_transaction(request):
     form1 = ExpensiveForm()

@@ -10,6 +10,60 @@
         body{
             background-color: whitesmoke;
         }
+        <style>
+            body {
+                background-color: #f4f4f4;
+                font-family: Arial, sans-serif;
+            }
+            .container {
+                max-width: 800px;
+                margin: auto auto;
+                padding: 20px;
+                background-color: white;
+                border-radius: 10px;
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            }
+            h3 {
+                text-align: center;
+                margin-top: 20px;
+            }
+            h1 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .btn-custom {
+                background-color: #ff5722;
+                color: white;
+                width: 100%;
+                padding: 10px;
+                font-size: 18px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+            .btn-custom:hover {
+                background-color: #e64a19;
+            }
+            .form-control {
+                margin-bottom: 15px;
+                border-radius: 10px;
+                padding: 15px;
+                font-size: 16px;
+            }
+    
+            @keyframes bounce {
+                0%, 20%, 50%, 80%, 100% {
+                    transform: translateY(0);
+                }
+                40% {
+                    transform: translateY(-15px);
+                }
+                60% {
+                    transform: translateY(-10px);
+                }
+            }
+        </style>
     </style>
 </head>
 <body>
@@ -22,13 +76,41 @@
     </a>
   </nav>
     </div>
+    <h1>opozex Record information</h1>
 <div class="container mt-5">
     <button type="button" class="btn btn-secondary btn-lg btn-block pt-4 pb-4">Expense</button>
     <button type="button" class="btn btn-secondary btn-lg btn-block  pt-4 pb-4">Income</button>
+    {% for item in items %}
+    <button type="button" class="btn btn-primary active btn-lg btn-block  pt-4 pb-4">{{item}}</button>
+    
+    {% endfor %}
     <hr>
-    <button type="button" class="btn btn-secondary btn-block btn-lg">add new item</button>
-</div>
+    
 
+<h3>Add New custom item</h3>
+    <div class="row">
+
+  
+    
+    <form method="post" class="col-sm-6 col-11" style="margin:auto;">
+        
+        {% if form2.errors %}
+{% for field in form2 %}
+    {% for error in field.errors %}
+        {{ error }}
+    {% endfor %}
+{% endfor %}
+{% for error in form.non_field_errors %}
+    {{ error }}
+{% endfor %}
+{% endif %}
+
+        {% csrf_token %}
+        <input type="text" name="custom" class="form-control">
+        <button type="submit" name="submit_form2" class="btn-custom">Add tag</button>
+    </form>
+</div>
+</div>
 
 </body>    
 </html>
