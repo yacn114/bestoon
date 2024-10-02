@@ -54,7 +54,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'bestoon.urls'
-
+STATIC_URL = 'static/'
+STATIC_ROOT = 'assets/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static/",
+]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

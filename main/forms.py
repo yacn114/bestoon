@@ -13,7 +13,7 @@ class ExpensiveForm(forms.ModelForm):
 class IncomeForm(forms.ModelForm):
     class Meta:
         model = Income
-        fields = ['title', 'amount', 'date','user']
+        fields = ['title', 'amount', 'date']
         widgets = {
             'title': forms.SelectMultiple(attrs={'class': 'form-control'}),
             'amount': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter amount'}),
